@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Project</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <%= link_to('비밀 국정원 클럽', posts_path, class: "navbar-brand")  %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+    <!-- views/devise/menu/_login_items.html.erb -->
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to('로그아웃', destroy_user_session_path, method: :delete, class: "navbar-brand") %>        
+            </li>
+          <% else %>
+            <li>
+              <%= link_to('로그인', new_user_session_path, class: "navbar-brand")  %>
+              <%= link_to('회원가입', new_user_registration_path, class: "navbar-brand")  %>
+            </li>
+          <% end %>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"<%= alert %>></p>
+  <%= yield %>
+  </body>
+</html>
